@@ -1,0 +1,14 @@
+# Carpetas de compilación
+/bin/
+
+# Base de datos local
+/data/biblioteca.mv.db
+
+# Archivos de clases compiladas
+*.class
+
+# Archivos del sistema operativo
+.DS_Store
+
+# Archivos de log
+*.log
