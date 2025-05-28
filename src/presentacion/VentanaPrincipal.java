@@ -2,6 +2,7 @@ package presentacion;
 
 import javax.swing.*;
 import java.awt.FlowLayout;
+import presentacion.GestionCompras;
 
 public class VentanaPrincipal extends JFrame {
 
@@ -30,7 +31,7 @@ public class VentanaPrincipal extends JFrame {
         JMenuItem itemGestionLibros = new JMenuItem("Gestionar Libros");
         itemGestionLibros.addActionListener(e -> abrirGestionLibros());
         menuLibros.add(itemGestionLibros);
-        
+                
         // Menú Usuarios
         JMenu menuUsuarios = new JMenu("Usuarios");
         JMenuItem itemGestionUsuarios = new JMenuItem("Gestionar Usuarios");
@@ -43,10 +44,24 @@ public class VentanaPrincipal extends JFrame {
         itemGestionPrestamos.addActionListener(e -> abrirGestionPrestamos());
         menuPrestamos.add(itemGestionPrestamos);
         
+     // Menú E-commerce
+        JMenu menuEcommerce = new JMenu("E-commerce");
+        JMenuItem itemGestionCompras = new JMenuItem("Comprar libros");
+
+        itemGestionCompras.addActionListener(e -> {
+            GestionCompras compras = new GestionCompras();
+            escritorio.add(compras);
+            compras.setVisible(true);
+        });
+
+        
+        
         // Agregar menús a la barra
         menuBar.add(menuLibros);
         menuBar.add(menuUsuarios);
         menuBar.add(menuPrestamos);
+        menuEcommerce.add(itemGestionCompras);
+        menuBar.add(menuEcommerce);
         
         setJMenuBar(menuBar);
     }

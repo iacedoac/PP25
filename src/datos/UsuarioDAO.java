@@ -76,18 +76,24 @@ public class UsuarioDAO {
 
     //  Listar todos los usuarios
     public List<Usuario> listar() {
-        List<Usuario> usuarios = new ArrayList<>();
+    	 List<Usuario> usuarios = new ArrayList<>();
+    	    String sql = "SELECT * FROM usuarios";
+    	    try (Connection conn = Conexion.conectar();
+    	         Statement stmt = conn.createStatement();
+    	         ResultSet rs = stmt.executeQuery(sql)) {
 
-        try (Connection conn = Conexion.conectar();
-             PreparedStatement stmt = conn.prepareStatement(LISTAR);
-             ResultSet rs = stmt.executeQuery()) {
-
-            while (rs.next()) {
-                usuarios.add(new Usuario(rs.getInt("id"), rs.getString("nombre"), rs.getString("email"), rs.getString("telefono")));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+    	        while (rs.next()) {
+    	            Usuario u = new Usuario(
+    	                rs.getInt("id"),
+    	                rs.getString("nombre"),
+    	                rs.getString("email"),
+    	                rs.getString("telefono")
+    	            );
+    	            usuarios.add(u);
+    	        }
+    	    } catch (Exception e) {
+    	        e.printStackTrace();
+    	    }
         return usuarios;
     }
 }

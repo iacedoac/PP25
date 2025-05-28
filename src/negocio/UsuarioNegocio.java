@@ -49,5 +49,6 @@ public class UsuarioNegocio {
     public List<Usuario> listarUsuarios() {
         return usuarioDAO.listar();
     }
+    
 }
 

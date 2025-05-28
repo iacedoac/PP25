@@ -75,19 +75,26 @@ public class LibroDAO {
     }
 
     //  Listar todos los libros
-    public List<Libro> listar() {
-        List<Libro> libros = new ArrayList<>();
+    public List<Libro> obtenerTodos() {
+        List<Libro> lista = new ArrayList<>();
+        String sql = "SELECT * FROM libros";
 
         try (Connection conn = Conexion.conectar();
-             PreparedStatement stmt = conn.prepareStatement(LISTAR);
-             ResultSet rs = stmt.executeQuery()) {
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
 
             while (rs.next()) {
-                libros.add(new Libro(rs.getInt("id"), rs.getString("titulo"), rs.getString("autor"), rs.getString("isbn")));
+                Libro libro = new Libro(
+                    rs.getInt("id"),
+                    rs.getString("titulo"),
+                    rs.getString("autor"),
+                    rs.getString("isbn")
+                );
+                lista.add(libro);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return libros;
+        return lista;
     }
 }

@@ -24,7 +24,7 @@ public class LibroNegocio {
         return libroDAO.insertar(libro);
     }
     public Libro buscarLibroPorId(int id) {
-        List<Libro> libros = libroDAO.listar(); // Obtener todos los libros
+        List<Libro> libros = libroDAO.obtenerTodos(); // Obtener todos los libros
         for (Libro libro : libros) {
             if (libro.getId() == id) {
                 return libro;
@@ -61,7 +61,11 @@ public class LibroNegocio {
 
     //  Listar todos los libros
     public List<Libro> listarLibros() {
-        return libroDAO.listar();
+    	return new LibroDAO().obtenerTodos();
+    }
+    
+    public List<Libro> obtenerTodos() {
+        return new LibroDAO().obtenerTodos();
     }
 
 

@@ -33,6 +33,14 @@ public class Conexion {
             + "estado VARCHAR(20) DEFAULT 'PENDIENTE', "
             + "FOREIGN KEY (id_usuario) REFERENCES usuarios(id), "
             + "FOREIGN KEY (id_libro) REFERENCES libros(id))";
+    //  Script para crear la tabla COMPRAS si no existe
+    private static final String CREAR_TABLA_COMPRAS = "CREATE TABLE IF NOT EXISTS compras ("
+            + "id IDENTITY PRIMARY KEY, "
+            + "usuario_id INT NOT NULL, "
+            + "libro_id INT NOT NULL, "
+            + "fecha DATE NOT NULL, "
+            + "FOREIGN KEY (usuario_id) REFERENCES usuarios(id), "
+            + "FOREIGN KEY (libro_id) REFERENCES libros(id))";
 
     public static Connection conectar() {
         try {
@@ -44,6 +52,8 @@ public class Conexion {
                 stmt.execute(CREAR_TABLA_LIBROS);
                 stmt.execute(CREAR_TABLA_USUARIOS); // 🔹 Se asegura de crear la tabla usuarios
                 stmt.execute(CREAR_TABLA_PRESTAMOS); // 🔹 Se asegura de crear la tabla préstamos
+                stmt.execute(CREAR_TABLA_COMPRAS); // 🔹 Se asegura de crear la tabla compras
+
             }
 
             return conn;
