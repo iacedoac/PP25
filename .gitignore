@@ -1,0 +1,35 @@
+# Compilados
+*.class
+*.jar
+*.war
+
+# Archivos de logs
+*.log
+
+# Configuraciones específicas de IDEs
+# Eclipse
+.project
+.classpath
+.settings/
+
+# IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+
+# VSCode
+.vscode/
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+
+# Archivos de bases de datos temporales
+*.h2.db
+*.mv.db
+*.trace.db
+
+# Otros temporales
+*.tmp
+*.bak
+*.swp
